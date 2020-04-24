@@ -4,6 +4,7 @@ import comp127graphics.FontStyle;
 import comp127graphics.GraphicsText;
 
 import java.awt.*;
+import java.util.Random;
 import java.util.Scanner;
 
 
@@ -14,6 +15,7 @@ public class BallPathTracker {
     private Ball ball;
     public String pitchLocation;
     private PitchView pitchView;
+    private Random random= new Random();
 
     public BallPathTracker(){
         canvas= new CanvasWindow("Ball Path Tracker",800,800);
@@ -24,12 +26,13 @@ public class BallPathTracker {
         makeFieldTop();
 
         canvas.draw();
-//
+
         Scanner scan= new Scanner(System.in);
         System.out.println("Enter a pitch location: inside, outside, middle.");
         pitchLocation= scan.next();
-//
-        ball= new Ball(396.25,710, 20 , 40);
+
+
+        ball= new Ball(396.25,710, 10 , 40);
         ball.setFillColor(Color.white);
         makeBall();
         canvas.pause(300);
