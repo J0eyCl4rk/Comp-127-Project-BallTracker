@@ -40,6 +40,12 @@ public class Ball extends Ellipse{
                 this.setCenter(xPos, yPos);
                 return true;
             }
+            else if(game.pitchLocation.equals("middle")){
+                xPos += 0;
+                yPos += yVel*dt;
+                this.setCenter(xPos, yPos);
+                return true;
+            }
         }
         return false;
     }

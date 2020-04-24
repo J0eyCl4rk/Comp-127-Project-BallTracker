@@ -13,27 +13,31 @@ public class BallPathTracker {
     private FieldTopView fieldTop;
     private Ball ball;
     public String pitchLocation;
+    private PitchView pitchView;
 
     public BallPathTracker(){
         canvas= new CanvasWindow("Ball Path Tracker",800,800);
 
         fieldTop= new FieldTopView(canvas);
 
+
         makeFieldTop();
 
         canvas.draw();
-
+//
         Scanner scan= new Scanner(System.in);
         System.out.println("Enter a pitch location: inside, outside, middle.");
         pitchLocation= scan.next();
-
-        ball= new Ball(396.25,710, 5 , 40);
+//
+        ball= new Ball(396.25,710, 20 , 40);
         ball.setFillColor(Color.white);
         makeBall();
         canvas.pause(300);
 
         canvas.animate(this::moveBall);
-    }
+
+        //addPitchView();
+   }
 
 
     public static void main(String[] args){
@@ -48,6 +52,7 @@ public class BallPathTracker {
     }
 
 
+
     public void makeBall(){
         canvas.add(ball);
     }
@@ -55,5 +60,11 @@ public class BallPathTracker {
 
     public void moveBall(){
         ball.moveBall(-.25,800,725,0,150,this);
+    }
+
+    public void addPitchView(){
+        pitchView=new PitchView(canvas);
+        pitchView.makeStrikeZone();
+        pitchView.addBall(this,ball);
     }
 }
