@@ -41,7 +41,7 @@ public class PitchView{
         Random rand= new Random();
         double ballYPos=rand.nextInt(700);
         if(ballYPos<200)
-            ballYPos=200;
+            ballYPos=180;
         if(game.pitchLocation.equals("inside")){
             ball.setCenter(266.5,ballYPos);
             canvas.add(ball);
