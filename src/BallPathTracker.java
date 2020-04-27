@@ -39,7 +39,7 @@ public class BallPathTracker {
 
         canvas.animate(this::moveBall);
 
-        //addPitchView();
+        addPitchView();
    }
 
 
@@ -65,9 +65,10 @@ public class BallPathTracker {
         ball.moveBall(-.25,800,725,0,150,this);
     }
 
-//    public void addPitchView(){
-//        pitchView=new PitchView(canvas);
-//        pitchView.makeStrikeZone();
-//        pitchView.addBall(this,ball);
+    public void addPitchView() {
+        pitchView = new PitchView(canvas);
+        pitchView.makeStrikeZone();
+        pitchView.addBall(this, ball);
+    }
 }
 
