@@ -1,6 +1,7 @@
 import comp127graphics.*;
 import comp127graphics.Point;
 import comp127graphics.Polygon;
+import comp127graphics.Rectangle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,20 +24,23 @@ public class FieldSideView {
     }
 
     private void draw() {
+        createSky();
         createBleachers();
         createMound();
+        createGrass();
         addToCanvas(listOfGraphics);
+
 
     }
 
     private void createBleachers() {
-        double y1 = .9 * height;
+        double y1 = .9 * height-200;
         double x1 = .75 * width;
 
         List<Point> points = List.of(
-                new Point(x1, height),
-                new Point(width, height),
-                new Point(width, y1 *.95),
+                new Point(x1, height-200),
+                new Point(width, height-200),
+                new Point(width, (y1 *.95)),
                 new Point(x1, y1)
         );
         Path bleacher = new Path(points);
@@ -47,7 +51,7 @@ public class FieldSideView {
 
     private void createMound() {
         double x = width * .125;
-        double y = height * .99;
+        double y = height * .99-200;
 
         Arc mound = new Arc(x, y, width / 10, y, 0, 180);
         mound.setStrokeColor(new Color(128, 64, 0));
@@ -55,6 +59,19 @@ public class FieldSideView {
         listOfGraphics.add(mound);
     }
 
+    private void createSky(){
+        Rectangle sky= new Rectangle(0,200,800,400);
+        sky.setFillColor(new Color(51,204,255));
+        sky.setStrokeColor(new Color(51,204,255));
+        listOfGraphics.add(sky);
+    }
+
+    public void createGrass(){
+        Rectangle grass= new Rectangle(0,600,800,200);
+        grass.setStrokeColor(new Color(0,153,0));
+        grass.setFillColor(new Color(0,153,0));
+        listOfGraphics.add(grass);
+    }
 
 
 

@@ -12,7 +12,7 @@ public class PitchView{
     private double xPos2= 600;
     private double yPos1=200;
     private double yPos2= 700;
-    private Ball ball;
+    private TopBall ball;
 
     public PitchView(CanvasWindow canvas) {
         this.canvas = canvas;
@@ -36,7 +36,7 @@ public class PitchView{
 
     }
 
-    public void addBall(BallPathTracker game, Ball ball){
+    public void addBall(BallPathTracker game, TopBall ball){
         this.ball=ball;
         Random rand= new Random();
         double ballYPos=rand.nextInt(700);

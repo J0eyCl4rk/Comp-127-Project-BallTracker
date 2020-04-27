@@ -12,7 +12,8 @@ public class BallPathTracker {
 
     private CanvasWindow canvas;
     private FieldTopView fieldTop;
-    private TopBall ball;
+    private FieldSideView fieldSide;
+    private SideBall ball;
     public String pitchLocation;
     private PitchView pitchView;
     private Random random= new Random();
@@ -21,9 +22,10 @@ public class BallPathTracker {
         canvas= new CanvasWindow("Ball Path Tracker",800,800);
 
         fieldTop= new FieldTopView(canvas);
+        fieldSide= new FieldSideView(canvas);
 
 
-        makeFieldTop();
+        //makeFieldTop();
 
         canvas.draw();
 
@@ -32,7 +34,7 @@ public class BallPathTracker {
         pitchLocation= scan.next();
 
 
-        ball= new TopBall(396.25,710, 10 , 40);
+        ball= new SideBall(396.25,710, 10 , 40,canvas);
         ball.setFillColor(Color.white);
         makeBall();
         canvas.pause(300);
@@ -56,13 +58,14 @@ public class BallPathTracker {
 
 
 
+
     public void makeBall(){
         canvas.add(ball);
     }
 
 
     public void moveBall(){
-        ball.moveBall(-.25,800,725,0,150,this);
+        ball.updatePosition(-.25);
     }
 
 //    public void addPitchView(){
