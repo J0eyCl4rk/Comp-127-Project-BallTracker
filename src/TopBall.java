@@ -2,28 +2,16 @@ import comp127graphics.Ellipse;
 
 import java.awt.*;
 
-public class Ball extends Ellipse{
+public class TopBall extends Baseball{
 
-    private double xPos;
-    private double yPos;
-    private double xVel;
-    private double yVel;
-    private Ellipse baseball;
-    private static final Color baseballColor= Color.white;
-    private static final Color seamColor= Color.red;
-    private static final double RADIUS= 10;
-    private static final double GRAV=-.98;
+    protected Ellipse baseball;
 
-    public Ball(double xPos, double yPos, double xVel, double yVel){
+    public TopBall(double xPos, double yPos, double xVel, double yVel){
         super(xPos,yPos,RADIUS,RADIUS);
         this.xPos= xPos;
         this.yPos= yPos;
         this.xVel= xVel;
         this.yVel= yVel;
-
-        baseball= new Ellipse(xPos, yPos, RADIUS, RADIUS);
-        baseball.setFillColor(baseballColor);
-        baseball.setStrokeColor(seamColor);
     }
 
     public boolean moveBall(double dt, double xMax, double yMax, double xMin, double yMin, BallPathTracker game) {
@@ -50,3 +38,4 @@ public class Ball extends Ellipse{
         return false;
     }
 }
+
