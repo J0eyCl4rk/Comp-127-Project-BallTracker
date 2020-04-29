@@ -20,7 +20,7 @@ public class PitchView{
         this.canvas = canvas;
         xPos1 = .25 * width + initialX;
         xPos2 = .75 * width + initialX;
-        yPos1 = .25 * height + initialY;
+        yPos1 = .20 * height + initialY;
         yPos2 = 7 / 8.0 * height + initialY;
 
         this.width = width;
@@ -30,17 +30,17 @@ public class PitchView{
     public void makeStrikeZone(){
         double y = yPos1;
         for(int i=0;i<4;i++) {
-            Line strikeLine = new Line(xPos1, y, xPos2, y);
-            strikeLine.setStrokeWidth(8);
+            Line strikeLine = new Line(xPos1, y, xPos2-80, y);
+            strikeLine.setStrokeWidth(5);
             canvas.add(strikeLine);
-            y += 167 / 800.0 * height;
+            y += 180 / 800.0 * height;
         }
         double x = xPos1;
         for(int i=0;i<4;i++){
             Line strikeLineHorizontal= new Line(x,yPos1,x,yPos2);
-            strikeLineHorizontal.setStrokeWidth(8);
+            strikeLineHorizontal.setStrokeWidth(5);
             canvas.add(strikeLineHorizontal);
-            x +=134 / 800.0 * width;
+            x +=100 / 800.0 * width;
         }
 
     }
