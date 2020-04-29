@@ -1,4 +1,3 @@
-
 import comp127graphics.CanvasWindow;
 import comp127graphics.FontStyle;
 import comp127graphics.GraphicsText;
@@ -26,13 +25,10 @@ public class BallPathTracker {
         layout = new CreateLayout(canvas);
 
 
-//        Scanner scan = new Scanner(System.in);
-//        System.out.println("Enter a pitch location: inside, outside, middle.");
-//        pitchLocation = scan.next();
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter a pitch location: inside, outside, middle.");
+        pitchLocation = scan.next();
 
-
-        topBall = new TopBall(398.25,713, 100, 100);
-        makeBall();
 
         canvas.pause(300);
 
@@ -43,10 +39,12 @@ public class BallPathTracker {
         double maxYBound = canvas.getHeight();
 
         sideBall = new SideBall(ballInitialX, ballInitialY, 40, angleInDegrees, maxXBound, maxYBound);
+        topBall = new TopBall(396.25,710, 10 , 40);
+
 
         canvas.animate(this::moveBalls);
 
-}
+    }
 
     public static void main(String[] args) {
         new BallPathTracker();
@@ -59,16 +57,14 @@ public class BallPathTracker {
 
 
     public void moveBalls() {
-        topBall.moveBall(.1, 800,700, 0, 0, this);
+        moveTopBall();
         moveSideBall();
-
-
     }
 
     public void moveSideBall() {
         double oldX = sideBall.getX();
         double oldY = sideBall.getY();
-        sideBall.moveBall(0.1);
+        sideBall.moveBall(0.15);
         Line tracer = new Line(oldX, oldY, sideBall.getX(), sideBall.getY());
         tracer.setStrokeColor(Color.BLACK);
         canvas.add(tracer);
@@ -77,6 +73,16 @@ public class BallPathTracker {
 
     public String getPitchLocation() {
         return pitchLocation;
+    }
+
+    public void moveTopBall(){
+        topBall.moveBall(-.15,800,725,0,150,this);
+        Line tracer1 = new Line(400,710 , topBall.getX()+5, topBall.getY()+5);
+        tracer1.setStrokeColor(Color.BLACK);
+        tracer1.setStrokeWidth(.5);
+        canvas.add(tracer1);
+        makeBall();
+        canvas.draw();
     }
 }
 
