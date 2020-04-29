@@ -12,45 +12,55 @@ public class PitchView{
     private double xPos2= 600;
     private double yPos1=200;
     private double yPos2= 700;
+    private double height;
+    private double width;
     private TopBall ball;
 
-    public PitchView(CanvasWindow canvas) {
+    public PitchView(double initialX, double initialY, double width, double height, CanvasWindow canvas) {
         this.canvas = canvas;
+        xPos1 = .25 * width + initialX;
+        xPos2 = .75 * width + initialX;
+        yPos1 = .25 * height + initialY;
+        yPos2 = 7 / 8.0 * height + initialY;
 
+        this.width = width;
+        this.height = height;
     }
 
     public void makeStrikeZone(){
+        double y = yPos1;
         for(int i=0;i<4;i++) {
-            Line strikeLine = new Line(xPos1, yPos1, xPos2, yPos1);
+            Line strikeLine = new Line(xPos1, y, xPos2, y);
             strikeLine.setStrokeWidth(8);
             canvas.add(strikeLine);
-            yPos1 += 167;
+            y += 167 / 800.0 * height;
         }
+        double x = xPos1;
         for(int i=0;i<4;i++){
-            yPos1=200;
-            Line strikeLineHorizontal= new Line(xPos1,yPos1,xPos1,yPos2);
+            Line strikeLineHorizontal= new Line(x,yPos1,x,yPos2);
             strikeLineHorizontal.setStrokeWidth(8);
             canvas.add(strikeLineHorizontal);
-            xPos1+=134;
+            x +=134 / 800.0 * width;
         }
 
     }
 
     public void addBall(BallPathTracker game, TopBall ball){
+        String pitchLocation = game.getPitchLocation();
         this.ball=ball;
         Random rand= new Random();
         double ballYPos=rand.nextInt(700);
         if(ballYPos<200)
             ballYPos=180;
-        if(game.pitchLocation.equals("inside")){
+        if(pitchLocation.equals("inside")){
             ball.setCenter(266.5,ballYPos);
             canvas.add(ball);
         }
-        else if(game.pitchLocation.equals("outside")){
+        else if(pitchLocation.equals("outside")){
             ball.setCenter(533,ballYPos);
             canvas.add(ball);
         }
-        else if(game.pitchLocation.equals("middle")){
+        else if(pitchLocation.equals("middle")){
             ball.setCenter(400,ballYPos);
             canvas.add(ball);
         }
