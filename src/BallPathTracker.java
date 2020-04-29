@@ -15,6 +15,7 @@ public class BallPathTracker {
     private FieldSideView fieldSide;
     private TopBall topBall;
     private SideBall sideBall;
+    private StrikeZoneBall strikeZoneBall;
     private String pitchLocation;
     private PitchView pitchView;
     private Random random = new Random();
@@ -40,8 +41,9 @@ public class BallPathTracker {
 
         sideBall = new SideBall(ballInitialX, ballInitialY, 40, angleInDegrees, maxXBound, maxYBound);
         topBall = new TopBall(396.25,710, 10 , 40);
+        strikeZoneBall= new StrikeZoneBall(960,475);
 
-
+        addStrikeBall(this,strikeZoneBall);
         canvas.animate(this::moveBalls);
 
     }
@@ -51,7 +53,7 @@ public class BallPathTracker {
     }
 
 
-    public void makeBall() {
+    public void makeTopBall() {
         canvas.add(topBall);
     }
 
@@ -81,8 +83,27 @@ public class BallPathTracker {
         tracer1.setStrokeColor(Color.BLACK);
         tracer1.setStrokeWidth(.5);
         canvas.add(tracer1);
-        makeBall();
+        makeTopBall();
         canvas.draw();
     }
+
+    public void addStrikeBall(BallPathTracker game, StrikeZoneBall ball) {
+        String pitchLocation = game.getPitchLocation();
+        Random rand = new Random();
+        double ballYPos = rand.nextInt(540)+200;
+        if (ballYPos < 475)
+            ballYPos = 485;
+        if (pitchLocation.equals("inside")) {
+            ball.setCenter(1000, ballYPos);
+            canvas.add(ball);
+        } else if (pitchLocation.equals("outside")) {
+            ball.setCenter(1160, ballYPos);
+            canvas.add(ball);
+        } else if (pitchLocation.equals("middle")) {
+            ball.setCenter(1080, ballYPos);
+            canvas.add(ball);
+        }
+    }
+
 }
 

@@ -14,7 +14,7 @@ public class PitchView{
     private double yPos2= 700;
     private double height;
     private double width;
-    private TopBall ball;
+    private StrikeZoneBall ball;
 
     public PitchView(double initialX, double initialY, double width, double height, CanvasWindow canvas) {
         this.canvas = canvas;
@@ -45,23 +45,23 @@ public class PitchView{
 
     }
 
-    public void addBall(BallPathTracker game, TopBall ball){
+    public void addBall(BallPathTracker game, StrikeZoneBall ball){
         String pitchLocation = game.getPitchLocation();
         this.ball=ball;
         Random rand= new Random();
-        double ballYPos=rand.nextInt(700);
-        if(ballYPos<200)
-            ballYPos=180;
+        double ballYPos=rand.nextInt(740);
+        if(ballYPos<475)
+            ballYPos=475;
         if(pitchLocation.equals("inside")){
-            ball.setCenter(266.5,ballYPos);
+            ball.setCenter(980,ballYPos);
             canvas.add(ball);
         }
         else if(pitchLocation.equals("outside")){
-            ball.setCenter(533,ballYPos);
+            ball.setCenter(1200,ballYPos);
             canvas.add(ball);
         }
         else if(pitchLocation.equals("middle")){
-            ball.setCenter(400,ballYPos);
+            ball.setCenter(1300,ballYPos);
             canvas.add(ball);
         }
 
