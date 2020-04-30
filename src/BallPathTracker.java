@@ -39,7 +39,7 @@ public class BallPathTracker {
         double maxYBound = canvas.getHeight();
 
         sideBall = new SideBall(ballInitialX, ballInitialY, exitVelocity, angle, maxXBound, maxYBound / 2);
-        topBall = new TopBall(396.25,710, 10 , 40);
+        topBall = new TopBall(396.25,710, random.nextInt(38) , 40);
         strikeZoneBall= new StrikeZoneBall(960,475);
 
         addStrikeBall(this,strikeZoneBall);
@@ -67,7 +67,7 @@ public class BallPathTracker {
     }
 
     public void checkAngle() {
-        System.out.println("Enter an angle (-20-60)");
+        System.out.println("Enter an angle (0-60)");
         angle = scan.nextDouble();
 
         if (angle < 0 || angle > 90) {
@@ -123,7 +123,7 @@ public class BallPathTracker {
     }
 
     public void moveTopBall(){
-        topBall.moveBall(-.15,800,725,0,150,this);
+        topBall.moveBall(-.15,800,725,0,this);
         Line tracer1 = new Line(400,710 , topBall.getX()+5, topBall.getY()+5);
         tracer1.setStrokeColor(Color.BLACK);
         tracer1.setStrokeWidth(.5);
@@ -150,5 +150,12 @@ public class BallPathTracker {
         }
     }
 
-}
+    public double getExitVelocity(){
+        return exitVelocity;
+    }
 
+    public double getAngle(){
+        return angle;
+    }
+
+}
