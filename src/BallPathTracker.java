@@ -3,6 +3,9 @@ import comp127graphics.FontStyle;
 import comp127graphics.GraphicsText;
 import comp127graphics.Line;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
@@ -11,25 +14,21 @@ import java.util.Scanner;
 public class BallPathTracker {
 
     private CanvasWindow canvas;
-    private FieldTopView fieldTop;
-    private FieldSideView fieldSide;
     private TopBall topBall;
     private SideBall sideBall;
     private StrikeZoneBall strikeZoneBall;
     private String pitchLocation;
-    private PitchView pitchView;
+    private double exitVelocity;
+    private double angle;
     private Random random = new Random();
-    private CreateLayout layout;
+    private Scanner scan = new Scanner(System.in);;
 
     public BallPathTracker() {
+
+        getInput();
+
         canvas = new CanvasWindow("Ball Path Tracker", 1440, 800);
-        layout = new CreateLayout(canvas);
-
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter a pitch location: inside, outside, middle.");
-        pitchLocation = scan.next();
-
+        CreateLayout layout = new CreateLayout(canvas);
 
         canvas.pause(300);
 
@@ -39,13 +38,59 @@ public class BallPathTracker {
         double maxXBound = canvas.getWidth();
         double maxYBound = canvas.getHeight();
 
-        sideBall = new SideBall(ballInitialX, ballInitialY, 40, angleInDegrees, maxXBound, maxYBound);
+        sideBall = new SideBall(ballInitialX, ballInitialY, exitVelocity, angle, maxXBound, maxYBound / 2);
         topBall = new TopBall(396.25,710, 10 , 40);
         strikeZoneBall= new StrikeZoneBall(960,475);
 
         addStrikeBall(this,strikeZoneBall);
         canvas.animate(this::moveBalls);
 
+    }
+
+    public void getInput() {
+        checkLocation();
+        checkVelocity();
+        checkAngle();
+
+    }
+
+    public void checkVelocity() {
+        System.out.println("Enter a velocity (40-120)");
+        exitVelocity = scan.nextDouble();
+
+        if(exitVelocity < 40 || exitVelocity > 120) {
+            System.out.println("Illegal velocity");
+            System.out.println("Enter a velocity");
+            exitVelocity = scan.nextDouble();
+            checkVelocity();
+        }
+    }
+
+    public void checkAngle() {
+        System.out.println("Enter an angle (-20-60)");
+        angle = scan.nextDouble();
+
+        if (angle < 0 || angle > 90) {
+            System.out.println("Illegal angle");
+            System.out.println("Enter an angle (0-90)");
+            angle = scan.nextDouble();
+            checkAngle();
+        }
+    }
+
+    public void checkLocation() {
+        System.out.println("Enter a pitch location: inside, outside, middle.");
+        pitchLocation = scan.next();
+        pitchLocation = pitchLocation.toLowerCase();
+        System.out.println(pitchLocation);
+
+        List<String> listOfLocations= List.of("inside", "middle", "outside");
+        if (!listOfLocations.contains(pitchLocation)) {
+            System.out.println("Illegal pitch location");
+            System.out.println("Enter a pitch location: inside, outside, middle.");
+            pitchLocation = scan.next();
+            checkLocation();
+        }
     }
 
     public static void main(String[] args) {

@@ -32,9 +32,16 @@ public class FieldSideView {
         createBleachers();
         createMound();
         createGrass();
+        drawBorder();
         addToCanvas(listOfGraphics);
 
 
+    }
+
+    private void drawBorder() {
+        Rectangle border = new Rectangle(initialX, initialY, width, height);
+        border.setStrokeColor(Color.BLACK);
+        listOfGraphics.add(border);
     }
 
     private void createBleachers() {
