@@ -1,5 +1,3 @@
-import comp127graphics.CanvasWindow;
-
 public class StrikeZoneBall extends Baseball {
 
     /** Creates a Baseball to be added to the strike zone portion of the
