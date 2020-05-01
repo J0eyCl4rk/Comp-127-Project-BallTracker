@@ -60,8 +60,6 @@ public class BallPathTracker {
 
         if(exitVelocity < 40 || exitVelocity > 120) {
             System.out.println("Illegal velocity");
-            System.out.println("Enter a velocity");
-            exitVelocity = scan.nextDouble();
             checkVelocity();
         }
     }
@@ -72,8 +70,6 @@ public class BallPathTracker {
 
         if (angle < 0 || angle > 90) {
             System.out.println("Illegal angle");
-            System.out.println("Enter an angle (0-90)");
-            angle = scan.nextDouble();
             checkAngle();
         }
     }
@@ -87,8 +83,6 @@ public class BallPathTracker {
         List<String> listOfLocations= List.of("inside", "middle", "outside");
         if (!listOfLocations.contains(pitchLocation)) {
             System.out.println("Illegal pitch location");
-            System.out.println("Enter a pitch location: inside, outside, middle.");
-            pitchLocation = scan.next();
             checkLocation();
         }
     }
