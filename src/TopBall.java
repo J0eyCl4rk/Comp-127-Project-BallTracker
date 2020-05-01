@@ -1,5 +1,12 @@
 public class TopBall extends Baseball{
 
+    /** Creates a TopBall object that is used on the FieldTopView part of the canvas.
+     * This is a child class of the Baseball class.
+     * @param xPos x position of the TopBall
+     * @param yPos y position of the TopBall
+     * @param xVel x velocity of the TopBall
+     * @param yVel y velocity of the TopBall
+     */
     public TopBall(double xPos, double yPos, double xVel, double yVel){
         super(xPos,yPos,RADIUS,RADIUS);
         this.xPos= xPos;
@@ -8,6 +15,18 @@ public class TopBall extends Baseball{
         this.yVel= yVel;
     }
 
+    /** Moves the ball by updating the position through checking if the ball is in bounds.
+     * The change in the position is influenced by the Pitch location, exit velocity(speed off the bat,
+     * and launch angle(angle the bat hits the ball). Based on the different angle and velocity inputs,
+     * the yMin represents the distance the ball can travel in terms of the y direction. The pitch location
+     * determines which part of the field the ball will be hit to.
+     *
+     * @param dt change over time
+     * @param xMax maximum x coordinate
+     * @param yMax maximum y coordinate
+     * @param xMin minimum x coordinate
+     * @param game BallPathTracker Object
+     */
     public void moveBall(double dt, double xMax, double yMax, double xMin, BallPathTracker game) {
         double yMin = 0;
         if(game.getAngle()>=0 && game.getAngle()<=20 && game.getExitVelocity()>=40 && game.getExitVelocity()<=60){

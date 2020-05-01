@@ -16,6 +16,15 @@ public class PitchView{
     private double width;
     private TopBall ball;
 
+
+    /** Creates a PitchView Object that shows the
+     * location of the pitch in a strike zone.
+     * @param initialX the top left x of the object
+     * @param initialY the top left y of the object
+     * @param width the width of the canvas
+     * @param height the height of the canvas
+     * @param canvas the canvas to which the object is added
+     */
     public PitchView(double initialX, double initialY, double width, double height, CanvasWindow canvas) {
         this.canvas = canvas;
         xPos1 = .25 * width + initialX;
@@ -27,6 +36,9 @@ public class PitchView{
         this.height = height;
     }
 
+    /** Creates the lines used to represent the strikezone
+     * and adds them to the canvas
+     */
     public void makeStrikeZone(){
         double y = yPos1;
         for(int i=0;i<4;i++) {
@@ -41,28 +53,6 @@ public class PitchView{
             strikeLineHorizontal.setStrokeWidth(5);
             canvas.add(strikeLineHorizontal);
             x +=100 / 800.0 * width;
-        }
-
-    }
-
-    public void addBall(BallPathTracker game, TopBall ball){
-        String pitchLocation = game.getPitchLocation();
-        this.ball=ball;
-        Random rand= new Random();
-        double ballYPos=rand.nextInt(700);
-        if(ballYPos<200)
-            ballYPos=180;
-        if(pitchLocation.equals("inside")){
-            ball.setCenter(266.5,ballYPos);
-            canvas.add(ball);
-        }
-        else if(pitchLocation.equals("outside")){
-            ball.setCenter(533,ballYPos);
-            canvas.add(ball);
-        }
-        else if(pitchLocation.equals("middle")){
-            ball.setCenter(400,ballYPos);
-            canvas.add(ball);
         }
 
     }

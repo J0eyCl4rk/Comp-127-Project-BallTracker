@@ -11,19 +11,23 @@ import java.util.List;
 public class FieldTopView {
 
     private CanvasWindow canvas;
-    double xBound;
-    double yBound;
     private static final Color infColor = new Color(158,100,55);
     private static final Color outColor = new Color(11,158,1);
 
 
-
+    /** Creates a new FieldTopView Object that shows the field from
+     * a looking down view.
+      * @param canvas the canvas the FieldTopView will be added to
+     */
     public FieldTopView(CanvasWindow canvas){
         this.canvas=canvas;
         drawField();
 
     }
 
+    /**Creates the Rectangle that represents the outfield grass
+     * and adds it to the canvas.
+     */
     public void makeOutField(){
         Rectangle out= new Rectangle(0,canvas.getHeight() * 1.0 / 4.0,800,700);
         out.setFillColor(outColor);
@@ -32,6 +36,12 @@ public class FieldTopView {
 
     }
 
+    /**
+     * Creates the infield including the dirt line,
+     * infield grass line, two white foul lines,
+     * the pithers mound, and home plate and adds
+     * them to the canvas.
+     */
     public void makeInfield(){
         double x1=400;
         double y1=550;
@@ -74,6 +84,9 @@ public class FieldTopView {
         canvas.add(home);
     }
 
+    /**
+     * Creates the bleachers and adds them to the canvas
+     */
     public void bleachers(){
 
         List<Point> bleacherPoints = List.of(
@@ -92,6 +105,9 @@ public class FieldTopView {
         canvas.add(bleachers);
     }
 
+    /**Calls the makeOutField, makeInfield, and bleachers method,
+     * creating the graphics objects and adding them to the canvas.
+     */
     public void drawField() {
         makeOutField();
         makeInfield();

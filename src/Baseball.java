@@ -15,6 +15,13 @@ public class Baseball extends Ellipse {
     protected static final double RADIUS= 10;
     protected static final double GRAV=-.98;
 
+    /** Creates a new Baseball Object which is a child class of an Ellipse
+     *
+     * @param xPos x position of the Baseball
+     * @param yPos y position of the Baseball
+     * @param xVel x Velocity(dx) of the Baseball
+     * @param yVel y Velocity(dy) of the Baseball
+     */
     public Baseball(double xPos, double yPos, double xVel, double yVel) {
         super(xPos, yPos, RADIUS, RADIUS);
         this.xPos = xPos;
@@ -25,5 +32,4 @@ public class Baseball extends Ellipse {
         this.setStrokeColor(seamColor);
     }
 
-//    public void moveBall();
 }
