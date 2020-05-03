@@ -77,7 +77,7 @@ public class FieldSideView {
         );
         Path bleacher = new Path(points);
         bleacher.setFilled(true);
-        bleacher.setFillColor(Color.darkGray);
+        bleacher.setFillColor(Color.black);
         listOfGraphics.add(bleacher);
     }
 
@@ -89,7 +89,7 @@ public class FieldSideView {
         double y = height * .99 + initialY;
 
         Arc mound = new Arc(x, 2 / 3.0 * height, width / 15, y, 60, 60);
-        mound.setStrokeColor(new Color(128, 64, 0));
+        mound.setStrokeColor(new Color(158,100,55));
         mound.setStrokeWidth(18);
         listOfGraphics.add(mound);
     }

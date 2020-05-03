@@ -34,6 +34,8 @@ public class PitchView{
 
         this.width = width;
         this.height = height;
+
+        makeStrikeZone();
     }
 
     /** Creates the lines used to represent the strikezone

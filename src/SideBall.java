@@ -1,7 +1,6 @@
-import comp127graphics.CanvasWindow;
-import comp127graphics.Ellipse;
-
 public class SideBall extends Baseball{
+
+    private static final double GRAV = -9.8 * 9 / 4;
 
     public SideBall(double xPos, double yPos, double vel, double initialAngle, double maxX, double maxY){
         super(xPos,yPos,RADIUS,RADIUS);
@@ -16,7 +15,7 @@ public class SideBall extends Baseball{
         this.yVel = vel * -Math.sin(initialAngleRadians);
     }
 
-    public boolean moveBall(double dt) {
+    public void moveBall(double dt) {
         double newX = xVel * dt + xPos;
         double newY = yVel * dt + yPos;
         if (xPos > 0 && xPos < maxX && yPos > 0 && yPos < maxY) {
@@ -24,9 +23,6 @@ public class SideBall extends Baseball{
             yPos += (yVel * dt);
             this.setPosition(newX, newY);
             yVel = yVel - GRAV * dt;
-            return true;
         }
-        else
-            return false;
     }
 }

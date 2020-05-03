@@ -7,6 +7,7 @@ public class StrikeZoneBall extends Baseball {
      */
     public StrikeZoneBall(double xPos, double yPos) {
         super(xPos, yPos, 0, 0);
+        this.setWidthAndHeight(30, 30);
     }
 
 }
