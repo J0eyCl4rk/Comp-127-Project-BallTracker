@@ -69,7 +69,7 @@ public class TopBall extends Baseball{
             yMin=500;
         }
         else if(game.getAngle()>40 && game.getAngle()<=60 && game.getExitVelocity()>60 && game.getExitVelocity()<=120){
-            yMin=300;
+            yMin=350;
         }
 
         String pitchLocation = game.getPitchLocation();
