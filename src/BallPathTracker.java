@@ -199,10 +199,18 @@ public class BallPathTracker {
         }
     }
 
+    /** Returns the exit velocity
+     *
+     * @return
+     */
     public double getExitVelocity(){
         return exitVelocity;
     }
 
+    /** returns the angle
+     *
+     * @return
+     */
     public double getAngle(){
         return angle;
     }
