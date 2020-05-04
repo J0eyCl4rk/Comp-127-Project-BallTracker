@@ -1,6 +1,6 @@
 public class SideBall extends Baseball{
 
-    private static final double GRAV = -9.8 * 9 / 4;
+    private static final double GRAV = -9.8 * 7 / 4;
 
     public SideBall(double xPos, double yPos, double vel, double initialAngle, double maxX, double maxY){
         super(xPos,yPos,RADIUS,RADIUS);
