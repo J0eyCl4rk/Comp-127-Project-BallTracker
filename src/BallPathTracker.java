@@ -153,6 +153,10 @@ public class BallPathTracker {
         canvas.draw();
     }
 
+    /**Returns the pitch location
+     *
+     * @return
+     */
     public String getPitchLocation() {
         return pitchLocation;
     }
