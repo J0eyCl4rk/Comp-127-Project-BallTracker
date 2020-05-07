@@ -2,10 +2,6 @@ import comp127graphics.CanvasWindow;
 import comp127graphics.FontStyle;
 import comp127graphics.GraphicsText;
 import comp127graphics.Line;
-import comp127graphics.events.MouseButtonEvent;
-
-import javax.swing.plaf.basic.BasicTreeUI;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +23,9 @@ public class BallPathTracker {
     private Scanner scan = new Scanner(System.in);
     CreateLayout layout;
 
-    /** Creates a Ball Path Tracker Object that draws the visual layout of
-     * a baseball field, adds the balls, and animates the movement of the balls
-     *
+    /** Creates a Ball Path Tracker Object that asks the user to input the parameters,
+     * draws the visual layout of a baseball field, adds the balls, and animates the
+     * movement of the balls
      */
 
     public BallPathTracker() {
@@ -38,31 +34,28 @@ public class BallPathTracker {
 
         canvas = new CanvasWindow("Ball Path Tracker", 1440, 800);
         layout = new CreateLayout(canvas);
-
         canvas.pause(300);
 
         addBalls();
 
-        addStrikeBall(strikeZoneBall);
         canvas.animate(this::moveBalls);
-
-
     }
 
     /** Creates objects of SideBall, TopBall, and StrikeZoneBall,
-     * which are the visual representation of
-     * the balls, and sets the initial X and Y location and bounds
+     * which are the visual representation of the balls, and sets
+     * the initial X and Y location and bounds
      */
 
     public void addBalls() {
         double ballInitialX = canvas.getWidth() * 5.0 / 9;;
-        double ballInitialY = 2/3.0 * canvas.getHeight() / 2 - 3;
+        double ballInitialY = 2/3.0 * canvas.getHeight() / 2 - 10;
         double maxXBound = canvas.getWidth();
-        double maxYBound = canvas.getHeight() / 3.0 - 3;
+        double maxYBound = canvas.getHeight() / 3.0;
 
         sideBall = new SideBall(ballInitialX, ballInitialY , exitVelocity, angle, maxXBound, maxYBound);
-        topBall = new TopBall(396.25,710, random.nextInt(38) , 40);
+        topBall = new TopBall(396.25,710, exitVelocity , angle);
         strikeZoneBall= new StrikeZoneBall(960,475);
+        addStrikeZoneBall();
     }
 
     /** Calls checkLocation(), checkVelocity(), and checkAngle() which
@@ -159,70 +152,25 @@ public class BallPathTracker {
         canvas.draw();
     }
 
-    /**Returns the pitch location
-     *
-     * @return
-     */
-    public String getPitchLocation() {
-        return pitchLocation;
-    }
-
     /** Moves the visual representation of the ball from the top view
      * and adds a tail showing the path.
      */
 
     public void moveTopBall(){
-        topBall.moveBall(-.15,800,725,0,this);
-        Line tracer1 = new Line(400,710 , topBall.getX()+5, topBall.getY()+5);
-        tracer1.setStrokeColor(Color.BLACK);
-        tracer1.setStrokeWidth(.5);
-        canvas.add(tracer1);
+        double oldX = topBall.getCenter().getX();
+        double oldY = topBall.getCenter().getY();
+        topBall.moveBall(-.15, pitchLocation);
+        Line tracer = new Line(oldX, oldY, topBall.getCenter().getX(), topBall.getCenter().getY());
+        tracer.setStrokeColor(Color.BLACK);
+        canvas.add(tracer);
         makeTopBall();
         canvas.draw();
     }
 
     /** Adds the visual ball to the visual representation of the Strike zone
-     *
-     * @param ball object from the StrikeZoneBall class which represents
-     *             where the ball is located in the strike zone
      */
 
-    public void addStrikeBall(StrikeZoneBall ball) {
-
-        Random rand = new Random();
-        double ballYPos = rand.nextInt(540)+200;
-        if (ballYPos < 475)
-            ballYPos = 485;
-        switch (pitchLocation) {
-            case "inside":
-                ball.setCenter(1000, ballYPos);
-                canvas.add(ball);
-                break;
-            case "outside":
-                ball.setCenter(1160, ballYPos);
-                canvas.add(ball);
-                break;
-            case "middle":
-                ball.setCenter(1080, ballYPos);
-                canvas.add(ball);
-                break;
-        }
+    public void addStrikeZoneBall() {
+        canvas.add(strikeZoneBall.uopdatePosition(pitchLocation));
     }
-
-    /** Returns the exit velocity
-     *
-     * @return
-     */
-    public double getExitVelocity(){
-        return exitVelocity;
-    }
-
-    /** returns the angle
-     *
-     * @return
-     */
-    public double getAngle(){
-        return angle;
-    }
-
 }

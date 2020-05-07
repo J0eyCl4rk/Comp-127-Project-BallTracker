@@ -1,6 +1,6 @@
 public class SideBall extends Baseball{
 
-    private static final double GRAV = -9.8 * 6 / 4;
+    private static final double GRAV = -9.8 * 9 / 4;
 
     /** Creates a new SideBall Object
      *
@@ -32,7 +32,7 @@ public class SideBall extends Baseball{
     public void moveBall(double dt) {
         double newX = xVel * dt + xPos;
         double newY = yVel * dt + yPos;
-        if (xPos > 0 && xPos < maxX && yPos > 0 && yPos < maxY) {
+        if (xPos > 0 && xPos < maxX && yPos > 0 && yPos < maxY - 10) {
             xPos += (xVel * dt);
             yPos += (yVel * dt);
             this.setPosition(newX, newY);
