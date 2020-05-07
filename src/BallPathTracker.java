@@ -2,8 +2,10 @@ import comp127graphics.CanvasWindow;
 import comp127graphics.FontStyle;
 import comp127graphics.GraphicsText;
 import comp127graphics.Line;
+import comp127graphics.events.MouseButtonEvent;
 
 import javax.swing.plaf.basic.BasicTreeUI;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,7 @@ public class BallPathTracker {
         addStrikeBall(strikeZoneBall);
         canvas.animate(this::moveBalls);
 
+
     }
 
     /** Creates objects of SideBall, TopBall, and StrikeZoneBall,
@@ -80,6 +83,7 @@ public class BallPathTracker {
     public void checkVelocity() {
         System.out.println("Enter a velocity (40-120)");
         exitVelocity = scan.nextDouble();
+        System.out.println("--------------------");
 
         if(exitVelocity < 40 || exitVelocity > 120) {
             System.out.println("Illegal velocity");
@@ -95,6 +99,7 @@ public class BallPathTracker {
     public void checkAngle() {
         System.out.println("Enter an angle (0-60)");
         angle = scan.nextDouble();
+        System.out.println("--------------------");
 
         if (angle < 0 || angle > 60) {
             System.out.println("Illegal angle");
@@ -108,6 +113,7 @@ public class BallPathTracker {
     public void checkLocation() {
         System.out.println("Enter a pitch location: inside, outside, middle.");
         pitchLocation = scan.next().toLowerCase();
+        System.out.println("--------------------");
 
         List<String> listOfLocations= List.of("inside", "middle", "outside");
         if (!listOfLocations.contains(pitchLocation)) {
